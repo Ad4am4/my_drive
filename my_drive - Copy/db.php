@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "admin_drive";        // <-- Ubah menjadi username baru
-$pass = "Securedrive123";      // <-- Masukkan password yang kamu buat tadi
+$pass = getenv('DB_PASS');    // <-- Ambil password dari variabel lingkungan, jangan simpan langsung di kode
 $db = "my_drive";
 
 $conn = mysqli_connect($host, $user, $pass, $db);

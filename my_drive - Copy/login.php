@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db.php';
+include_once 'db.php';
 $pesan = "";
 
 // Jika sudah login, langsung lempar ke index
@@ -10,11 +10,15 @@ if(isset($_SESSION['user_id'])){
 }
 
 if(isset($_POST['login'])){
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $query = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
-    $data = mysqli_fetch_array($query);
+    $stmt = mysqli_prepare($conn, "SELECT id, username, password FROM users WHERE username = ?");
+    mysqli_stmt_bind_param($stmt, 's', $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $data = mysqli_fetch_array($result);
+    mysqli_stmt_close($stmt);
 
     // Cek apakah username ada DAN password cocok dengan enkripsi di database
     if($data && password_verify($password, $data['password'])){
@@ -28,7 +32,7 @@ if(isset($_POST['login'])){
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - My Local Drive</title>

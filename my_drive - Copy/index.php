@@ -1,4 +1,4 @@
-<?php include 'db.php'; ?>
+<?php include_once 'db.php'; ?>
 <?php
 session_start();
 if(!isset($_SESSION['user_id'])){
@@ -38,7 +38,7 @@ if(!isset($_SESSION['user_id'])){
 <div class="container">
     <h2>☁️ My Local Drive</h2>
     <div style="text-align: right; margin-bottom: 20px;">
-    Halo, <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>! 
+    Halo, <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>!
     <a href="logout.php" style="color: red; text-decoration: none; font-weight: bold;">[Logout]</a>
 </div>
 

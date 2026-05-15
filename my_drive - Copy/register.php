@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include_once 'db.php';
 $pesan = "";
 
 if(isset($_POST['register'])){
@@ -18,7 +18,7 @@ if(isset($_POST['register'])){
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar - My Local Drive</title>
